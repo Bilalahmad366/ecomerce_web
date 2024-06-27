@@ -2,7 +2,7 @@ import { createRouter, createWebHistory } from 'vue-router'
 import HomeView from '../views/HomeView.vue'
 import Login from '@/components/login.vue'
 import SignUp from '@/components/SignUp.vue'
-import adminpage from '@/components/adminpage.vue'
+import welcome from '@/components/welcome.vue'
 
 const router = createRouter({
   history: createWebHistory(),
@@ -12,11 +12,10 @@ const router = createRouter({
       name: 'home',
       component: HomeView
     },
-  
     {
-      path: '/adminpage',
-      name: 'adminpage',
-      component: adminpage
+      path: '/welcome',
+      name: 'welcome',
+      component: welcome
     },
   
     {
