@@ -6,8 +6,9 @@
         <nav>
           <ul class="nav flex justify-between py-2 m-0 px-3">
             <div class="input flex items-center rounded py-1 sm:px-4 px-2">
-              <input
-                class="w-96 bg-transparent outline-none font-medium"
+              <input 
+                v-model="search"
+                class="capitalize w-96 bg-transparent outline-none font-medium"
                 type="text"
                 placeholder="Search items "
               />
@@ -22,15 +23,15 @@
               <li v-if="cross" @:click="Cross" id="cross">
                 <i class="fa-solid fa-circle-xmark"></i>
               </li>
-              <li><RouterLink to="/">home</RouterLink></li>
-              <li><RouterLink to="/">about</RouterLink></li>
-              <li><RouterLink to="/">blog</RouterLink></li>
-              <li><RouterLink to="/">contact us</RouterLink></li>
-              <li><RouterLink to="/">dashboard</RouterLink></li>
+              <li><RouterLink to="/home">home</RouterLink></li>
+              <li><RouterLink to="/home">about</RouterLink></li>
+              <li><RouterLink to="/home">blog</RouterLink></li>
+              <li><RouterLink to="/home">contact us</RouterLink></li>
+              <li><RouterLink to="/home">dashboard</RouterLink></li>
 
               <li>
                 <RouterLink v-model="cart" to="/"
-                  ><i  class="fa-solid fa-cart-shopping"></i
+                  ><i class="fa-solid fa-cart-shopping"></i
                 ></RouterLink>
               </li>
               <div class="flex flex-col justify-center">
@@ -42,8 +43,6 @@
                   ></routerLink>
                 </li>
               </div>
-
-              
             </div>
             <div>
               <li id="mobile" @:click="mobile">
@@ -59,7 +58,7 @@
 
       <div class="allProducts flex flex-wrap justify-center my-4">
         <div
-          v-for="items in list"
+          v-for="items in filterlist"
           :key="items.id"
           class="catagory flex w-56 flex-col items-center m-3 rounded-xl"
         >
@@ -80,7 +79,7 @@
       </div>
     </div>
   </header>
-  <foter />
+  <foter/>
 </template>
     <script  >
 import foter from "../components/footer.vue";
@@ -93,18 +92,26 @@ export default {
 
   data() {
     return {
-      cart:[],
+      search: "",
       cross: true,
       mobilebar: true,
       list: [],
       imgurl: [],
     };
   },
-  methods: {
-    AddToCart(){
-      alert(this.cart)
-      this.cart="khan";
 
+  computed: {
+    filterlist: function () {
+        return this.list.filter((list) => {
+          return list.description.match(this.search);
+        });
+    },
+  },
+
+  methods: {
+    AddToCart() {
+      alert(this.cart);
+      this.cart = "khan";
     },
     mobile() {
       this.mobilebar = !this.mobilebar;
@@ -114,7 +121,7 @@ export default {
     },
     logout() {
       swal("logout !!!");
-       localStorage.clear();
+      localStorage.clear();
       this.$router.push({ name: "welcome" });
     },
   },
