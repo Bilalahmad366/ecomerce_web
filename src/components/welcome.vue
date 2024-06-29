@@ -20,7 +20,7 @@
         <p class="text-lg text-center mt-4">Explore our wide range of products!</p>
       </div>
     </div>
-    <foter />
+    <!-- <foter /> -->
   </template>
   
   <script>

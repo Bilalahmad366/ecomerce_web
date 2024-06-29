@@ -1,5 +1,5 @@
 <template>
-  <footer class="bg-gray-900 text-white py-12">
+  <footer class=" text-white py-12">
     <div class="container mx-auto px-4">
       <div class="grid grid-cols-1 md:grid-cols-4 gap-4">
         <div>
@@ -42,3 +42,13 @@ export default{
     name:"foter"
 }
 </script>
+<style>
+footer{
+  background: linear-gradient(
+    90deg,
+    rgba(2, 0, 36, 1) 0%,
+    rgba(9, 9, 121, 1) 35%,
+    rgba(0, 212, 255, 1) 100%
+  );
+}
+</style>
