@@ -1,6 +1,6 @@
 <template>
     <div>
-      <nav class="bg-gray-800 p-4">
+      <nav class=" nav p-4">
         <div class="container mx-auto flex justify-between items-center">
           <div>
             <span class="text-white text-xl font-bold">E-commerce Store</span>
@@ -20,7 +20,7 @@
         <p class="text-lg text-center mt-4">Explore our wide range of products!</p>
       </div>
     </div>
-    <!-- <foter /> -->
+    <foter />
   </template>
   
   <script>
@@ -40,5 +40,12 @@ mounted(){
   </script>
   
   <style scoped>
+.nav{
+  background: linear-gradient(
+    90deg,
+    rgba(2, 0, 36, 1) 0%,
+    rgba(9, 9, 121, 1) 35%,
+    rgba(0, 212, 255, 1) 100%)
+}
   </style>
   

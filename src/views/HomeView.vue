@@ -1,144 +1,99 @@
 
 <template>
-
-      
-  <div v-if="showcart" class="cart  w-2/4 h-2/4 rounded ">
-        <div  v-for="items in allcart" :key="items.id" class=" bg-white  rounded-lg shadow-md overflow-hidden border m-6">
-          <div class="flex justify-center items-center">
-            <div class="w-1/3">
-              <img
-                :src="items.thumbnail"
-                alt="Product Image"
-                class="h-full w-full object-cover"
-              />
-            </div>
-            <div class="w-2/3 p-4">
-              <h2 class="text-xl text-center font-semibold mb-2">
-                {{ items.title }}
-              </h2>
-              <div class="flex justify-between items-center">
-                <div class="flex flex-col items-center mb-2">
-                  <div>
-                    <span class="text-gray-700">Quantity : </span>
-                    <span class="font-semibold">{{ items.quantity }}</span>
-                  </div>
-                  <div>
-                    <span class="text-gray-700">Price : </span>
-                    <span class="font-semibold">{{ items.price }}</span>
-                  </div>
-                  <div>
-                    <span class="text-gray-700">Discount : </span>
-                    <span class="font-semibold text-green-500">{{
-                      items.discountPercentage
-                    }}</span>
-                  </div>
-                </div>
-    
-                <div class="flex flex-col items-center mb-2">
-                  <div>
-                    <span class="text-gray-700">Total Discount : </span>
-                    <span class="font-semibold text-green-500">{{
-                      items.discountedTotal
-                    }}</span>
-                  </div>
-                  <div>
-                    <span class="text-gray-700">Total Price : </span>
-                    <span class="font-semibold">{{ items.total }}</span>
-                  </div>
-                </div>
-              </div>
+  <header >
+    <div>
+      <nav>
+        <ul class="nav flex justify-between py-2 m-0 px-3">
+          <div class="input flex items-center rounded py-1 sm:px-4 px-2">
+            <input
+              v-model="search"
+              class="capitalize w-96 bg-transparent outline-none font-medium"
+              type="text"
+              placeholder="Search items "
+            />
+            <div class="icon mx-1">
+              <i class="fa-solid fa-magnifying-glass"></i>
             </div>
           </div>
-       
-      </div>  
-  </div>
-  <header>
-    <header>
-      <div>
-        <nav>
-          <ul class="nav flex justify-between py-2 m-0 px-3">
-            <div class="input flex items-center rounded py-1 sm:px-4 px-2">
-              <input
-                v-model="search"
-                class="capitalize w-96 bg-transparent outline-none font-medium"
-                type="text"
-                placeholder="Search items "
-              />
-              <div class="icon mx-1">
-                <i class="fa-solid fa-magnifying-glass"></i>
-              </div>
-            </div>
-            <div
-              v-if="mobilebar"
-              class="navigation links flex font-semibold items-center gap-11 mx-11"
-            >
-              <li v-if="cross" @:click="Cross" id="cross">
-                <i class="fa-solid fa-circle-xmark"></i>
-              </li>
-              <li><RouterLink to="/">home</RouterLink></li>
-              <li><RouterLink to="/">about</RouterLink></li>
-              <li><RouterLink to="/">blog</RouterLink></li>
-              <li><RouterLink to="/">contact us</RouterLink></li>
-              <li><RouterLink to="/">dashboard</RouterLink></li>
+          <div 
+            v-if="mobilebar"
+            class="navigation links flex  lg:font-semibold items-center gap-11 mx-11"
+          >
+            <li v-if="cross" @:click="Cross" id="cross">
+              <i class="fa-solid fa-circle-xmark"></i>
+            </li>
+            <li><RouterLink to="/home">home</RouterLink></li>
+            <li><RouterLink to="/about">about</RouterLink></li>
+            <li><RouterLink to="/dashboard">dashboard</RouterLink></li>
 
+            <li>
+              <router-link   to="/cart" >
+                <i class="fa-solid fa-cart-shopping"></i>
+              </router-link>
+            </li>
+
+            <div class="flex flex-col justify-center">
               <li>
-                <button  @:click="cart"
-                  ><i class="fa-solid fa-cart-shopping"></i
-                ></button>
+                <routerLink
+                  class="logout lg:absolute lg:right-16 lg:top-3"
+                  @:click="logout" 
+                  ><i class="fa-solid fa-right-from-bracket text-xl"></i
+                ></routerLink>
               </li>
+            </div>
+          </div>
+          <div>
+            <li id="mobile" @:click="mobile">
+              <i class="fa-solid fa-bars text-white"></i>
+            </li>
+          </div>
+        </ul>
+      </nav>
+    </div>
+  </header>
 
-              <div class="flex flex-col justify-center">
-                <li>
-                  <routerLink
-                    class="logout lg:absolute lg:right-16 lg:top-3"
-                    @:click="logout"
-                    ><i class="fa-solid fa-right-from-bracket text-xl"></i
-                  ></routerLink>
-                </li>
-              </div>
-            </div>
-            <div>
-              <li id="mobile" @:click="mobile">
-                <i class="fa-solid fa-bars text-white"></i>
-              </li>
-            </div>
-          </ul>
-        </nav>
-      </div>
-    </header>
+
+<div class="home-img  flex justify-around ">
+  <div class="flex flex-col text-white items-center p-6 justify-center ">
+    <div class=" lg:text-7xl  sm:text-3xl text-2xl flex flex-col items-center"><span >SUMMER </span><span>COLLECTION</span></div>
+    <span class="text-xl my-1">upto 40% off</span>
+    <button class=" rounded-full px-3 py-2 my-2 bg-blue-800 outline-none text-sm text-white">Shop Now</button>
+  </div>
+  <img 
+   class="w-auto object-cover h-60 sm:h-96 lg:h-lvh bg-transparent " src="https://www.pngplay.com/wp-content/uploads/8/Women-Model-Transparent-PNG.png" alt="" >
+</div>
+  <header>
     <div class="text-center font-bold my-4">
       <h1 class="font-bold text-2xl">All products</h1>
 
       <div class="allProducts flex flex-wrap justify-center my-4">
         <div
+         @:click="display(items.id)"
           v-for="items in filterlist"
           :key="items.id"
-          class="catagory flex w-56 flex-col items-center m-3 rounded-xl"
+          class="catagory  flex w-56 flex-col items-center m-3 rounded-xl"
         >
           <div class="catagoryImg">
             <img :src="items.images" alt="" />
           </div>
           <div class="title">
-            <p class="text-sm font-semibold">{{ items.title }}</p>
+            <p class="text-sm font-semibold"> {{ items.title }}</p>
           </div>
           <div class="price my-2">
             <span class="text-blue-600">{{ items.price }}</span>
           </div>
 
           <div class="btn">
-            <button @:click="AddToCart">add to cart</button>
+            <button @:click="addTocart(items.id,items.price,items.title,items.images,items.discountPercentage)" >add to cart</button>
           </div>
         </div>
       </div>
     </div>
-  
-
-  
-
-</header>
+  </header>
   <foter />
 </template>
     <script  >
+import { computed } from "vue";
 import foter from "../components/footer.vue";
 import axios from "axios";
 export default {
@@ -150,17 +105,12 @@ export default {
   data() {
     return {
 
-      allcart: {
-        products: [],
-      },
-showcart:false,
-      quantitiy:1,
+     products:[
+     ],
       search: "",
       cross: true,
       mobilebar: true,
       list: [],
-      imgurl: [],
-      cartimg:[],
     };
   },
 
@@ -171,54 +121,34 @@ showcart:false,
       });
     },
   },
-
   methods: {
-    async cart() {
-      await axios
-        .get("https://dummyjson.com/carts/1")
-        .then((res) => {
-          if (res.status == 200) {
-            this.allcart = res.data.products;
-            this.showcart=!this.showcart
-            console.log(this.allcart);
-          }
-        })
-        .catch((err) => {
-          console.log(err);
-        });
-    },
-  },
+    async addTocart(itemId,price,title,images,discountPercentage){
+    await axios.post('http://localhost:3000/cart',{
+      id:"itemId",
+      price: "price",
+      title: "title",
+        quantity: "1",
+        thumbnail: images,
+        discountPercentage:discountPercentage,
 
-    AddToCart() {
+    })
+    swal("item added to cart","", "success");
 
-      axios.post('https://dummyjson.com/carts/add', {
-    userId:this.list[0].id,
-    products: [
-      {
-        id: this.id,
-        quantity:this.quantity
-      }
-    ]
-  }).then((res=>{
-        if(res.status==201){
-          swal("cart add sucsesful")
-          console.log(res)
-        }
-      })).catch((err)=>console.log("err",err)
-      )
     },
-    mobile() {
-      this.mobilebar = !this.mobilebar;
-    },
-    Cross() {
-      this.mobilebar = false;
-    },
+
+
     logout() {
-      swal("logout !!!");
-      localStorage.clear();
-      this.$router.push({ name: "welcome" });
-    },
-  // },
+    swal("logout succesful");
+    localStorage.clear();
+    this.$router.push({ name: "/welcome" });
+  },
+  mobile() {
+    this.mobilebar = !this.mobilebar;
+  },
+  Cross() {
+    this.mobilebar = false;
+  },
+  },
   async mounted() {
     let result = await axios.get("https://dummyjson.com/products");
     this.list = result.data.products;
@@ -229,15 +159,22 @@ showcart:false,
   },
 };
 </script>
-<style scoped >
-
-.cart{
+<style  scoped>
+.home-img{
+  background: linear-gradient(
+    90deg,
+    rgba(2, 0, 36, 1) 0%,
+    rgba(9, 9, 121, 1) 35%,
+    rgba(0, 212, 255, 1) 100%
+  );
+}
+.cart {
   position: absolute;
-    top: 50px;
-    right: 0px;
-z-index: 10;
-overflow-y: scroll;
-background: linear-gradient(
+  top: 50px;
+  right: 0px;
+  z-index: 10;
+  overflow-y: scroll;
+  background: linear-gradient(
     90deg,
     rgba(2, 0, 36, 1) 0%,
     rgba(9, 9, 121, 1) 35%,
@@ -247,7 +184,6 @@ background: linear-gradient(
     rgba(0, 0, 0, 0.3) 0px 30px 60px -30px,
     rgba(10, 37, 64, 0.35) 0px -2px 6px 0px inset;
 }
-
 
 .input {
   background: #e1ebee;
@@ -297,7 +233,7 @@ ul {
     rgba(10, 37, 64, 0.35) 0px -2px 6px 0px inset;
 }
 .navigation {
-  font-family: "Playwrite SK", cursive;
+  font-family: "Playwrite SK", ;
   color: #fff;
 }
 .navigation li:hover {
